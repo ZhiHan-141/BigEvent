@@ -32,7 +32,7 @@ $(function () {
         var username = $('#form_reg [name=username]').val();
         var password = $('#form_reg [name=password]').val();
         $.ajax({
-            url: 'http://ajax.frontend.itheima.net/api/reguser',
+            url: '/api/reguser',
             type: 'POST',
             data: {
                 username: username,
@@ -53,7 +53,7 @@ $(function () {
         // var myname = $('#form_login [name=username]').val();
         // var mypwd = $('#form_login [name=username]').val();
         $.ajax({
-            url: 'http://ajax.frontend.itheima.net/api/login',
+            url: '/api/login',
             method: 'POST',
             // data: {
             //     username: myname,
