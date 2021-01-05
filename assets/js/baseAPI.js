@@ -10,7 +10,6 @@ $.ajaxPrefilter(function (options) {
     //用户验证功能
     //1、本地获取页面请求 无论成不成功都执行 complete
     options.complete = function (res) {
-        console.log(res);
         //通过complete 中responseJSON属性进行判断 是否验证成功
         if (res.responseJSON.status === 1 && res.responseJSON.message === '身份认证失败！') {
             //强制跳转

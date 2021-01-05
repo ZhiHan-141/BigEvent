@@ -6,7 +6,6 @@ $(function () {
     var layer = layui.layer;
     //退出功能
     $('#btnLogout').on('click', function () {
-        console.log(1);
         layer.confirm('确定退出登录', { icon: 3, title: '提示' }, function (index) {
             //清除本地存储
             localStorage.removeItem('token');
@@ -23,8 +22,6 @@ function getUserInfo() {
         url: '/my/userinfo',
         method: 'GET',
         success: function (res) {
-            console.log(res);
-            // console.log(res.data.user_pic);
             if (res.status != 0) {
                 return layer.msg('用户验证失败！')
             }
