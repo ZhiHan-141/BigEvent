@@ -2,21 +2,32 @@ $(function () {
     //页面刷新就获取用户信息
     // 调用函数获取
     getUserInfo();
+
+    var layer = layui.layer;
+    //退出功能
+    $('#btnLogout').on('click', function () {
+        console.log(1);
+        layer.confirm('确定退出登录', { icon: 3, title: '提示' }, function (index) {
+            //清除本地存储
+            localStorage.removeItem('token');
+            location.href = '/login.html';
+            layer.close(index);
+        });
+    })
+
 })
 // 获取用户信息函数
 function getUserInfo() {
-    //从本地获取
-    var token = localStorage.getItem('token')
+    
     $.ajax({
         url: '/my/userinfo',
         method: 'GET',
-        // 配置请求头
-        headers: {
-            Authorization: token || ''
-        },
         success: function (res) {
             console.log(res);
-            console.log(res.data.user_pic);
+            // console.log(res.data.user_pic);
+            if (res.status != 0) {
+                return layer.msg('用户验证失败！')
+            }
             // 调用渲染头像函数
             renderAvatar(res.data)
         }
@@ -36,3 +47,4 @@ function renderAvatar(user) {
         $('.text-avatar').html(first).show()
     }
 }
+
